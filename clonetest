@@ -35,3 +35,7 @@ function test() {
 
 test "$MY_GITHUB_USER" "$MY_GITHUB_TOKEN" "github.com/$MY_GITHUB_USER/$REPO"
 test "$MY_GITLAB_USER" "$MY_GITLAB_TOKEN" "gitlab.com/$MY_GITLAB_USER/$REPO"
+
+
+test "oauth2" "$MY_GITHUB_TOKEN" "github.com/$MY_GITHUB_USER/$REPO"
+test "oauth2" "$MY_GITLAB_TOKEN" "gitlab.com/$MY_GITLAB_USER/$REPO"
