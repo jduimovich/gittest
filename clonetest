@@ -1,0 +1,40 @@
+
+
+USER=$MY_GITHUB_USER
+PW=$MY_GITHUB_TOKEN
+URL=github.com/jduimovich/junko
+OUT=out 
+
+function test() {  
+  USER=$1
+  PW=$2
+  URL=$3
+
+  echo 
+  echo "Cloning https://$URL"  
+  echo "User set to <$USER>" 
+  echo "Testing 'https://{USER}:{PW}@{URL}.git' format"
+
+  rm -rf  $OUT
+  git clone --quiet https://${USER}:${PW}@${URL}.git  $OUT
+  ERR=$?
+  if [ $ERR == 0 ]; then
+    echo " 'https://{USER}:{PW}@{URL}.git' format ok  "
+  else 
+    echo "ERROR 'https://{USER}:{PW}@{URL}.git' format  "
+  fi  
+
+  echo "Testing  'https://{PW}@{URL}.git' format"
+  rm -rf  $OUT 
+  git clone --quiet  https://${PW}@${URL}.git  $OUT
+  ERR=$?
+  if [ $ERR == 0 ]; then
+    echo " 'https://{PW}@{URL}.git' format ok  "
+  else
+    echo "ERROR 'https://{PW}@{URL}.git' format  "
+  fi
+  echo 
+}
+
+test "$MY_GITHUB_USER" "$MY_GITHUB_TOKEN" "github.com/jduimovich/junko"
+test "$MY_GITLAB_USER" "$MY_GITLAB_TOKEN" "gitlab.com/jduimovich/junko"
